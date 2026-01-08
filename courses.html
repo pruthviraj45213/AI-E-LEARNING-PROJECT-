@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LittleIdeas — All Courses</title>
+
+<style>
+  :root {
+    --bg:#0b0d12;
+    --card:#101425;
+    --muted:#9aa0b3;
+    --accent1:#7c57ff;
+    --accent2:#b58cff;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  body{
+    font-family:'Poppins',system-ui;
+    background:radial-gradient(800px at top left,rgba(124,87,255,0.1),transparent),var(--bg);
+    color:#e8eefc;
+    line-height:1.5;
+    padding:28px;
+  }
+
+  a{text-decoration:none;color:inherit}
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:30px;
+  }
+
+  .logo{
+    font-size:26px;
+    font-weight:700;
+    color:var(--accent2);
+  }
+
+  nav a{
+    margin:0 10px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  nav a:hover{color:white}
+
+  /* NEW TAX INVOICE BUTTON */
+  .invoice-btn{
+    padding:8px 14px;
+    background:var(--accent1);
+    color:white !important;
+    border-radius:8px;
+    font-size:13px;
+  }
+  .invoice-btn:hover{
+    background:var(--accent2);
+  }
+
+  h1{
+    font-size:24px;
+    color:#fff;
+    margin-bottom:10px;
+  }
+
+  p.subtitle{
+    color:var(--muted);
+    margin-bottom:25px;
+    font-size:14px;
+  }
+
+  .courses-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+
+  .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 25px rgba(124,87,255,0.25);
+  }
+
+  .card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+  }
+
+  .card-content{
+    padding:14px;
+  }
+
+  .card-content h3{
+    color:#fff;
+    font-size:16px;
+    margin-bottom:6px;
+  }
+
+  .card-content p{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:12px;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:8px 14px;
+    font-size:13px;
+    background:var(--accent1);
+    color:white;
+    border-radius:8px;
+    transition:background .3s ease, transform .2s ease;
+  }
+
+  .btn:hover{
+    background:var(--accent2);
+    transform:translateY(-2px);
+  }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:40px;
+  }
+</style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">LittleIdeas</div>
+    <nav>
+      <a href="AI platform.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="About">About</a>
+      <a href="contact.html">Contact</a>
+
+      <!-- ✅ TAX INVOICE BUTTON ADDED -->
+      <a href="Tax.invoice.html" class="invoice-btn">Tax Invoice</a>
+    </nav>
+  </header>
+
+  <h1>Explore Our AI-Powered Courses</h1>
+  <p class="subtitle">Choose from a wide range of in-demand skill programs powered by Artificial Intelligence.</p>
+
+  <div class="courses-grid">
+
+    <!-- 1 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\data science.png" alt="Data Science with AI">
+      <div class="card-content">
+        <h3>Data Science with AI</h3>
+        <p>Master AI-driven data analytics, machine learning, and visualization tools.</p>
+        <a href="DS course.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\data science ai.jpg" alt="Data Analytics with AI">
+      <div class="card-content">
+        <h3>Data Analytics with AI</h3>
+        <p>Learn to analyze and visualize big data using AI-powered insights.</p>
+        <a href="dataAnalytics.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\Benefits-of-Using-AI-and-ML-in-Cybersecurity_blog.jpg" alt="Cyber Security with AI">
+      <div class="card-content">
+        <h3>Cyber Security with AI</h3>
+        <p>Protect digital assets using AI-enabled threat detection and prevention.</p>
+        <a href="cyber security.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\full stack img.png" alt="Full Stack Development">
+      <div class="card-content">
+        <h3>Full Stack Development</h3>
+        <p>Build dynamic web apps with front-end, back-end, and AI integration.</p>
+        <a href="fullstack.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\cloude computing.jpg" alt="Cloud Computing with AI">
+      <div class="card-content">
+        <h3>Cloud Computing with AI</h3>
+        <p>Deploy scalable AI-enabled solutions using AWS, Azure, and GCP.</p>
+        <a href="cloud.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <img src="https://www.webskittersacademy.in/wp-content/uploads/2025/06/Digital-Marketing-Course-with-AI-The-Course-to-Keep-You-Ahead.jpg" alt="Digital Marketing with AI">
+      <div class="card-content">
+        <h3>Digital Marketing with AI</h3>
+        <p>Use AI to automate ads, optimize campaigns, and improve engagement.</p>
+        <a href="digital marketing.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\software testing img.avif" alt="Software Testing with AI">
+      <div class="card-content">
+        <h3>Software Testing with AI</h3>
+        <p>Explore smart automation and AI-based software validation tools.</p>
+        <a href="software testing.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\software img.jpg" alt="Software Courses">
+      <div class="card-content">
+        <h3>Software Courses</h3>
+        <p>Advance your coding skills through full-featured software projects.</p>
+        <a href="software courses.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <img src="https://www.training.com.au/wp-content/uploads/Network-engineer.jpg" alt="Networking">
+      <div class="card-content">
+        <h3>Networking</h3>
+        <p>Learn network design, configuration, and security using AI monitoring.</p>
+        <a href="networking.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\cad-cam-pdm-cae-systems-600nw-2577288645.webp" alt="CAD/CAM/CAE">
+      <div class="card-content">
+        <h3>CAD/CAM/CAE</h3>
+        <p>Design and simulate engineering models with AI-aided optimization.</p>
+        <a href="cad-cam-cae.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card">
+      <img src="https://trainingexpress.org.uk/wp-content/uploads/2021/08/Accountancy-Accounting-Training.jpg" alt="Accounts Finance">
+      <div class="card-content">
+        <h3>Accounts & Finance</h3>
+        <p>Manage accounts, taxation, and AI-based financial forecasting.</p>
+        <a href="accounts finance.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card">
+      <img src="https://oasistechnologies.co.in/wp-content/uploads/2023/12/sap-1.jpg" alt="SAP Certification">
+      <div class="card-content">
+        <h3>SAP Certification</h3>
+        <p>Master ERP solutions and become SAP certified with guided AI tools.</p>
+        <a href="sap-certification.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\super-mario-bros-2d-vs-3d-comparison.webp" alt="Animation Courses">
+      <div class="card-content">
+        <h3>Animation Courses</h3>
+        <p>Create 2D and 3D animations with AI-driven design assistance.</p>
+        <a href="animation-courses.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="card">
+      <img src="C:\Users\pruth\Downloads\DALL·E-2024-11-12-00.27.52-A-high-quality-featured-image-for-a-blog-about-fashion-technology-courses.-Show-a-futuristic-digital-workspace-with-a-designer-working-on-a-3D-garment-1-e1731351593421.webp" alt="Fashion Courses">
+      <div class="card-content">
+        <h3>Fashion Courses</h3>
+        <p>Design stylish AI-inspired fashion collections and trends.</p>
+        <a href="fastion-courses.html" class="btn">View Details</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 LittleIdeas — Learn Smarter with AI
+  </footer>
+
+</body>
+</html>

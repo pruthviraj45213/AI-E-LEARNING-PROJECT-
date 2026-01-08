@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tax Invoice — LittleIdeas</title>
+<style>
+  :root {
+    --bg:#0b0d12;
+    --card:#101425;
+    --muted:#9aa0b3;
+    --accent1:#7c57ff;
+    --accent2:#b58cff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Poppins',system-ui;
+    background:radial-gradient(800px at top left,rgba(124,87,255,0.1),transparent),var(--bg);
+    color:#e8eefc;
+    padding:28px;
+  }
+  h1{ font-size:26px; text-align:center; margin-bottom:20px; }
+
+  /* Header */
+  .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:900px;
+    margin:auto;
+    margin-bottom:30px;
+  }
+  .header a{
+    color:#7c57ff;
+    text-decoration:none;
+    font-weight:bold;
+    padding:8px 12px;
+    border:1px solid #7c57ff;
+    border-radius:6px;
+    transition:0.2s;
+  }
+  .header a:hover{
+    background:#7c57ff;
+    color:#fff;
+  }
+
+  /* Course Selection */
+  .course-btn{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 15px;
+    margin-bottom:8px;
+    background:var(--card);
+    border-radius:8px;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.2s;
+    color:#fff;
+  }
+  .course-btn.selected{ background:var(--accent1); color:#fff; }
+  .course-btn:hover{ background:var(--accent2); }
+  input{
+    width:100%;
+    padding:10px;
+    margin:10px 0 20px 0;
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:8px;
+    color:#fff;
+  }
+  .btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:var(--accent1);
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    border:none;
+    margin-right:10px;
+  }
+  .btn:hover{ background:var(--accent2); }
+  .download-btn{ background:#28a745; }
+  .download-btn:hover{ background:#34d16e; }
+
+  /* Invoice Professional Styling */
+  .invoice-box{
+    background:#fff;
+    color:#000;
+    padding:30px;
+    border-radius:12px;
+    max-width:900px;
+    margin:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    display:none;
+    font-family:'Arial',sans-serif;
+  }
+  .invoice-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  .invoice-header img{ width:100px; }
+  .invoice-header div{ text-align:right; font-size:14px; }
+  .invoice-header div h2{ margin:0; color:#333; }
+  table{ width:100%; border-collapse:collapse; margin-bottom:20px; }
+  table th, table td{ padding:12px; border:1px solid #ddd; }
+  table th{ background:#f0f0f0; text-align:left; color:#000; }
+  table td{ color:#000; }
+  tfoot td{ font-weight:bold; color:#000; }
+  .signature{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+  }
+  .signature div{
+    width:200px;
+    text-align:center;
+    border-top:1px solid #000;
+    padding-top:5px;
+    font-size:12px;
+    color:#555;
+  }
+  .invoice-footer{
+    font-size:12px;
+    color:#555;
+    margin-top:15px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div></div>
+  <a href="AI platform.html">Home</a> <!-- Replace index.html with your actual home URL -->
+</div>
+
+<h1>Generate Your Tax Invoice</h1>
+
+<div>
+  <label>Select Courses</label>
+  <div id="coursesList" style="margin:10px 0 20px 0;"></div>
+
+  <label>Enter Your Name</label>
+  <input type="text" id="name" placeholder="Your Full Name">
+
+  <div style="margin-top:10px;">
+    <button class="btn" onclick="generateInvoice()">Generate Invoice</button>
+    <button class="btn download-btn" onclick="downloadPDF()" id="downloadPdfBtn" style="display:none;">Download PDF</button>
+  </div>
+</div>
+
+<div class="invoice-box" id="invoiceResult"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+const COURSES = [
+  {name:'Data Science with AI', price:4999},
+  {name:'Data Analytics with AI', price:4499},
+  {name:'Cyber Security with AI', price:3999},
+  {name:'Full Stack Development', price:5999},
+  {name:'Cloud Computing with AI', price:5499},
+  {name:'Digital Marketing with AI', price:3499},
+  {name:'Software Testing with AI', price:2999},
+  {name:'Software Courses', price:2599},
+  {name:'Networking', price:2799},
+  {name:'CAD/CAM/CAE', price:4599},
+  {name:'Accounts & Finance', price:3299},
+  {name:'SAP Certification', price:4999},
+  {name:'Animation Courses', price:3999},
+  {name:'Fashion Courses', price:3599}
+];
+
+function renderCourses(){
+  const container = document.getElementById('coursesList');
+  COURSES.forEach(c=>{
+    const btn=document.createElement('div');
+    btn.className='course-btn';
+    btn.textContent=`${c.name} — ₹${c.price}`;
+    btn.dataset.price=c.price;
+    btn.addEventListener('click',()=>{btn.classList.toggle('selected');});
+    container.appendChild(btn);
+  });
+}
+renderCourses();
+
+function formatINR(x){ return '₹'+x.toFixed(2); }
+
+function generateInvoice(){
+  const selected = Array.from(document.querySelectorAll('.course-btn.selected'));
+  const name = document.getElementById('name').value.trim();
+  if(selected.length===0){ alert('Select at least one course.'); return; }
+  if(!name){ alert('Enter your name.'); return; }
+
+  const items = selected.map(s=>({name:s.textContent.replace(/—.*$/,''), price:parseFloat(s.dataset.price)}));
+  const subtotal = items.reduce((sum,i)=>sum+i.price,0);
+  const gst = subtotal*0.18;
+  const total = subtotal+gst;
+  const invoiceID = 'INV'+Math.floor(Math.random()*900000+100000);
+  const date = new Date().toLocaleDateString();
+
+  const rows = items.map(i=>`<tr><td>${i.name}</td><td style="text-align:right;">${formatINR(i.price)}</td></tr>`).join('');
+
+  const invoiceHTML = `
+  <div id="invoicePrintable">
+    <div class="invoice-header">
+      <img src="logo.png" alt="logo">
+      <div>
+        <h2>TAX INVOICE</h2>
+        <div>Invoice ID: ${invoiceID}</div>
+        <div>Date: ${date}</div>
+      </div>
+    </div>
+    <div style="margin-bottom:20px;">
+      <strong>Billed To:</strong><br>${name}
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th>Amount</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        <tr><td>Subtotal</td><td style="text-align:right;">${formatINR(subtotal)}</td></tr>
+        <tr><td>GST (18%)</td><td style="text-align:right;">${formatINR(gst)}</td></tr>
+        <tr><td>Total</td><td style="text-align:right;">${formatINR(total)}</td></tr>
+      </tfoot>
+    </table>
+    <div class="signature">
+      <div>Authorized Signature</div>
+      <div>Customer Signature</div>
+    </div>
+    <div class="invoice-footer">System-generated invoice. Contact support@littleideas.com for queries.</div>
+  </div>`;
+
+  const invoiceDiv = document.getElementById('invoiceResult');
+  invoiceDiv.innerHTML = invoiceHTML;
+  invoiceDiv.style.display='block';
+  document.getElementById('downloadPdfBtn').style.display='inline-block';
+}
+
+function downloadPDF(){
+  const printable = document.getElementById('invoiceResult').querySelector('#invoicePrintable');
+  if(!printable){ alert('Generate invoice first.'); return; }
+
+  // Force white background and black text for PDF
+  printable.style.background = '#ffffff';
+  printable.style.color = '#000000';
+
+  html2pdf().set({
+    margin:0.4,
+    filename:'invoice.pdf',
+    image:{type:'jpeg', quality:1},
+    html2canvas:{scale:3, logging:true, scrollY:0, useCORS:true},
+    jsPDF:{unit:'in', format:'a4', orientation:'portrait'}
+  }).from(printable).save();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Analytics with AI — LittleIdeas</title>
+<style>
+:root{
+--bg:#0b0d12;--card:#101425;--muted:#9aa0b3;
+--accent1:#7c57ff;--accent2:#b58cff;--radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:'Poppins',system-ui;
+background:radial-gradient(800px at top left,rgba(124,87,255,0.1),transparent),var(--bg);
+color:#e8eefc;line-height:1.6;padding:28px;
+}
+a{text-decoration:none;color:inherit}
+header{
+display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;
+}
+.logo{font-size:26px;font-weight:700;color:var(--accent2);}
+nav a{margin:0 10px;color:var(--muted);}nav a:hover{color:white;}
+
+/* COURSE HERO */
+.course-hero{
+display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
+gap:30px;background:var(--card);border-radius:var(--radius);
+padding:25px;box-shadow:0 5px 25px rgba(124,87,255,0.2);
+}
+.course-hero img{
+width:400px;border-radius:var(--radius);object-fit:cover;
+}
+.course-content{
+display:flex;flex-direction:row;flex-wrap:wrap;gap:25px;align-items:flex-start;
+}
+.course-info{
+flex:1;min-width:300px;
+}
+h1,h2{color:white;}
+.course-info p{color:var(--muted);margin-bottom:15px;font-size:15px;}
+.btn{
+display:inline-block;padding:12px 20px;background:var(--accent1);color:white;
+border-radius:8px;margin-top:15px;transition:0.3s;
+margin-right: 15px; /* Added margin for second button */
+}
+.btn:hover{background:var(--accent2);}
+.btn.secondary{
+	background: none;
+	border: 1px solid var(--accent1);
+}
+.btn.secondary:hover{
+	background: var(--accent1);
+}
+
+/* ENQUIRY FORM */
+.enquiry-form{
+width:280px;background:rgba(255,255,255,0.04);
+border-radius:var(--radius);padding:18px;
+box-shadow:0 0 15px rgba(124,87,255,0.15);
+}
+.enquiry-form h3{
+color:white;font-size:18px;margin-bottom:12px;text-align:center;
+}
+.enquiry-form label{
+display:block;margin-bottom:5px;font-size:13px;color:var(--muted);
+}
+.enquiry-form input,.enquiry-form textarea{
+width:100%;padding:8px 10px;margin-bottom:10px;
+border:none;border-radius:8px;background:rgba(255,255,255,0.08);
+color:white;font-size:14px;
+}
+.enquiry-form input::placeholder,.enquiry-form textarea::placeholder{color:#9aa0b3;}
+.enquiry-form input:focus,.enquiry-form textarea:focus{
+outline:2px solid var(--accent1);background:rgba(255,255,255,0.1);
+}
+.enquiry-form button{
+width:100%;background:var(--accent1);color:white;border:none;
+padding:10px;border-radius:8px;font-weight:500;cursor:pointer;
+transition:0.3s;
+}
+.enquiry-form button:hover{background:var(--accent2);}
+
+/* SECTIONS */
+section{margin-top:30px;}
+ul{margin-left:20px;color:var(--muted);margin-bottom:20px;}
+li{margin-bottom:6px;}
+.info-box{
+background:rgba(255,255,255,0.05);border-radius:var(--radius);padding:15px;margin-top:20px;
+}
+footer{text-align:center;color:var(--muted);margin-top:40px;font-size:13px;}
+
+/* --- Modal Styles for Brochure Download --- */
+.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1000; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgba(0,0,0,0.8); 
+	backdrop-filter: blur(5px);
+}
+.modal-content {
+	background-color: var(--card);
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border-radius: var(--radius);
+	width: 90%; 
+	max-width: 400px; 
+	box-shadow: 0 5px 30px rgba(124,87,255,0.4);
+	position: relative;
+}
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.modal-header h4 {
+	font-size: 20px;
+	color: var(--accent2);
+	display: flex;
+	align-items: center;
+}
+.cloud-icon {
+	font-size: 24px;
+	margin-right: 8px;
+	color: var(--accent1);
+}
+.close-btn {
+	color: var(--muted);
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0 5px;
+	line-height: 1;
+	transition: color 0.3s;
+}
+.close-btn:hover, .close-btn:focus {
+	color: white;
+}
+/* Form styling reuse from enquiry-form */
+#brochureForm input {
+	width: 100%;
+	padding: 10px 12px;
+	margin-bottom: 10px;
+	border: none;
+	border-radius: 8px;
+	background: rgba(255,255,255,0.08);
+	color: white;
+	font-size: 15px;
+}
+.course-static {
+	background: rgba(124,87,255,0.1);
+	color: var(--accent2);
+	padding: 10px;
+	border-radius: 8px;
+	text-align: center;
+	margin-bottom: 15px;
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.submitted-btn, .download-link, .close-bottom {
+	width: 100%;
+	padding: 12px;
+	border-radius: 8px;
+	font-weight: 600;
+	margin-top: 10px;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.submitted-btn {
+	background: var(--accent1);
+	color: white;
+	border: none;
+	display: block; /* Initially shown */
+}
+.submitted-btn:hover {
+	background: var(--accent2);
+}
+
+.download-link {
+	display: none; /* Hidden until form is submitted */
+	background: #00b894; /* A nice success color */
+	color: white;
+	border: none;
+}
+.download-link:hover {
+	background: #00a07e;
+}
+
+.close-bottom {
+	background: rgba(255,255,255,0.1);
+	color: var(--muted);
+	border: none;
+	margin-top: 15px;
+}
+.close-bottom:hover {
+	background: rgba(255,255,255,0.2);
+	color: white;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">LittleIdeas</div>
+ <nav>
+ <a href="../AI E-LEARNING PROJECT/AI platform.html">Home</a>
+ <a href="../courses.html">Courses</a>
+ </nav>
+</header>
+
+<div class="course-hero">
+ <img src="C:\Users\pruth\Downloads\data science ai.jpg" alt="Data Analytics with AI">
+ <div class="course-content">
+  <div class="course-info">
+  <h1>Data Analytics with AI</h1>
+  <p>Learn to transform raw data into valuable business insights using Artificial Intelligence. This program helps you master modern analytics, dashboards, and automated reporting with AI-powered techniques.</p>
+  <p><strong>Duration:</strong> 5 Months | <strong>Level:</strong> Beginner to Intermediate | <strong>Certificate:</strong> Yes</p>
+  <a href="#" class="btn">Enroll Now</a>
+	<button id="openBrochureModal" class="btn secondary">Download Brochure</button>
+  </div>
+
+<form class="enquiry-form">
+   <h3>Enquiry Form</h3>
+   <label for="name">Full Name</label>
+   <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+   <label for="email">Email</label>
+   <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+   <label for="phone">Phone</label>
+   <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+   <label for="message">Message</label>
+   <textarea id="message" name="message" rows="3" placeholder="Your message"></textarea>
+
+   <button type="submit">Submit</button>
+  </form>
+ </div>
+</div>
+
+<section>
+ <h2>Key Topics Covered</h2>
+ <ul>
+  <li>Excel and Power BI for business analytics</li>
+  <li>AI automation for data cleaning and preparation</li>
+  <li>Predictive analysis and trend forecasting</li>
+  <li>SQL and Python integration for analytics</li>
+  <li>Case study: Real business KPI dashboards</li>
+ </ul>
+</section>
+
+<section>
+ <h2>Why Take This Course?</h2>
+ <p>AI-driven analytics enables faster, smarter, and more accurate decision-making. You’ll learn how to build automated reporting systems that help organizations grow through insights, not guesswork.</p>
+ <div class="info-box">
+ <p>📈 <strong>Career Roles:</strong> Data Analyst, Business Analyst, BI Developer, Marketing Analyst</p>
+ </div>
+</section>
+
+<footer>© 2025 LittleIdeas</footer>
+
+<div id="brochureModal" class="modal">
+ <div class="modal-content">
+ <div class="modal-header">
+   <h4><span class="cloud-icon">☁</span> Download Brochure</h4>
+   <span class="close-btn top-close-btn" id="topCloseBtn">&times;</span>
+   </div>
+   <form id="brochureForm">
+   <input type="text" name="modal_name" placeholder="Name" required>
+   <input type="tel" name="modal_phone" placeholder="Mobile Number" required>
+   <input type="email" name="modal_email" placeholder="Email" required>
+   
+      <div class="course-static">Data Analytics with AI</div>
+   
+      <button type="submit" class="submitted-btn" id="submitBrochureBtn">Submit & Download</button>
+   
+      <a href="path/to/your/data_analytics_brochure.pdf" class="download-link" id="downloadLink" download>
+     Download Data Analytics Course Now
+     </a>
+   
+     <div style="clear: both;"></div>
+   </form>
+   <button class="close-btn close-bottom" id="bottomCloseBtn">Close</button>
+  </div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const modal = document.getElementById('brochureModal');
+		const openBtn = document.getElementById('openBrochureModal');
+		const brochureForm = document.getElementById('brochureForm');
+		const submitBtn = document.getElementById('submitBrochureBtn');
+		const downloadLink = document.getElementById('downloadLink');
+		// Select all elements with the class 'close-btn'
+		const closeButtons = document.querySelectorAll('.close-btn');
+
+		// 1. Open Modal
+		openBtn.onclick = function() {
+			modal.style.display = 'block';
+			// Reset form state on open
+			brochureForm.reset();
+			submitBtn.style.display = 'block';
+			downloadLink.style.display = 'none';
+		}
+
+		// 2. Close Modal
+		closeButtons.forEach(button => {
+			button.onclick = function() {
+				modal.style.display = 'none';
+			}
+		});
+
+		// 3. Close Modal when clicking outside
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = 'none';
+			}
+		}
+
+		// 4. Form Submission Logic
+		brochureForm.onsubmit = function(event) {
+			event.preventDefault(); // Stop form from doing a full page submit
+			
+			// Simulate data submission (replace with actual AJAX call to save lead)
+			console.log('Brochure form submitted.');
+			
+			// Hide submit button, show download link
+			submitBtn.style.display = 'none';
+			downloadLink.style.display = 'block';
+			
+			// Optional: Trigger download automatically if desired
+			// downloadLink.click(); 
+		}
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAD / CAM / CAE with AI — LittleIdeas</title>
+<style>
+:root {
+ --bg:#0b0d12;
+ --card:#101425;
+ --muted:#9aa0b3;
+ --accent1:#7c57ff;
+ --accent2:#b58cff;
+ --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:'Poppins',system-ui;
+ background:radial-gradient(800px at top left,rgba(124,87,255,0.12),transparent),var(--bg);
+ color:#e8eefc;
+ padding:28px;
+}
+a{text-decoration:none;color:inherit}
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:30px;
+}
+.logo{font-size:26px;font-weight:700;color:var(--accent2);}
+nav a{margin:0 10px;color:var(--muted);}
+nav a:hover{color:white;}
+.hero{
+ display:flex;
+ flex-wrap:wrap;
+ gap:28px;
+ background:var(--card);
+ padding:24px;
+ border-radius:var(--radius);
+ box-shadow:0 6px 24px rgba(124,87,255,0.12);
+}
+.hero img{
+ width:340px;
+ border-radius:var(--radius);
+ object-fit:cover;
+}
+.info{
+ flex:1;
+ min-width:260px;
+}
+.info h1{color:white;margin-bottom:10px;font-size:26px;}
+.info p{color:var(--muted);margin-bottom:12px;}
+.btn{
+ display:inline-block;
+ padding:12px 18px;
+ background:var(--accent1);
+ color:#fff;
+ border-radius:8px;
+ margin-top:12px;
+ text-decoration:none;
+ text-align: center;
+}
+.btn:hover{background:var(--accent2);}
+
+/* New style for the brochure button */
+.info .btn-secondary {
+    background: none;
+    border: 1px solid var(--accent1);
+    margin-left: 10px;
+    font-size: 14px;
+    padding: 11px 16px;
+}
+.info .btn-secondary:hover {
+    background: var(--accent1);
+}
+
+/* Reused input/textarea styles for both forms/modal */
+.enquiry-box input, 
+.enquiry-box textarea,
+.modal-content input,
+.modal-content textarea {
+ padding:10px;
+ border:none;
+ border-radius:8px;
+ background:rgba(255,255,255,0.08);
+ color:white;
+ font-size:14px;
+ width: 100%;
+ box-sizing: border-box;
+}
+.enquiry-box input::placeholder,
+.enquiry-box textarea::placeholder{color:var(--muted);}
+/* Reused button styles for both forms/modal */
+.enquiry-box button,
+.modal-content .submit-btn,
+.modal-content .submitted-btn,
+.modal-content .close-bottom {
+ background:var(--accent1);
+ color:white;
+ padding:10px;
+ border:none;
+ border-radius:8px;
+ font-weight:600;
+ cursor:pointer;
+ width: 100%;
+ transition:0.3s;
+}
+.enquiry-box button:hover,
+.modal-content .submit-btn:hover {background:var(--accent2);}
+
+
+/* Side enquiry form styling */
+.enquiry-box{
+ background:rgba(255,255,255,0.03);
+ padding:18px;
+ border-radius:var(--radius);
+ flex:0 0 300px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ box-shadow:0 4px 18px rgba(124,87,255,0.08);
+}
+.enquiry-box h3{
+ color:white;
+ text-align:center;
+ margin-bottom:12px;
+ font-size:18px;
+}
+.enquiry-box form{
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+}
+
+.section{margin-top:26px;}
+h2{color:white;margin-bottom:12px;}
+ul{margin-left:20px;color:var(--muted);margin-bottom:12px;}
+.info-box{
+ background:rgba(255,255,255,0.04);
+ padding:14px;
+ border-radius:12px;
+ margin-top:12px;
+ color:var(--muted);
+}
+footer{text-align:center;color:var(--muted);margin-top:40px;font-size:13px;}
+
+/* --- MODAL STYLES (New) --- */
+.modal {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    display: flex; /* Use flex for centering */
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: var(--card);
+    padding: 25px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: white;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+.modal-header h4 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--accent2);
+}
+.cloud-icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+.close-btn {
+    color: var(--muted);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover, .close-btn:focus {
+    color: white;
+    text-decoration: none;
+}
+.close-bottom {
+    background: none !important;
+    border: 1px solid var(--muted);
+    color: var(--muted) !important;
+    margin-top: 10px;
+}
+.close-bottom:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: white;
+    color: white !important;
+}
+
+/* Elements that appear after submission */
+#brochureForm input { margin-top: 10px; }
+#downloadLink {
+    display: block;
+    text-align: center;
+    padding: 12px 0;
+    margin-top: 20px;
+    background: #4CAF50; /* Green color for success */
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.submitted-btn {
+    display: none; /* Hidden by default */
+    background: var(--muted) !important; 
+    cursor: default;
+}
+.course-static {
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">LittleIdeas</div>
+ <nav>
+  <a href="../AI E-LEARNING PROJECT/AI platform.html">Home</a>
+  <a href="../courses.html">Courses</a>
+ </nav>
+</header>
+
+<div class="hero">
+ <img src="C:\Users\pruth\Downloads\cad-cam-pdm-cae-systems-600nw-2577288645.webp" alt="CAD CAM CAE with AI">
+
+ <div class="info">
+  <h1>CAD / CAM / CAE with AI</h1>
+  <p>Explore the intersection of design, simulation, and manufacturing enhanced by artificial intelligence for faster and smarter product development.</p>
+  <p><strong>Duration:</strong> 6 Months | <strong>Level:</strong> Intermediate | <strong>Certificate:</strong> Yes</p>
+  <a href="#" class="btn">Enroll Now</a>
+    <button id="openBrochureModalTop" class="btn btn-secondary">Download Brochure</button>
+ </div>
+
+ <div class="enquiry-box">
+  <h3> Enquiry Form</h3>
+  <form action="#" method="post">
+   <input type="text" name="name" placeholder="Your Full Name" required>
+   <input type="email" name="email" placeholder="Email Address" required>
+   <input type="tel" name="phone" placeholder="Phone Number" required>
+   <textarea name="message" rows="3" placeholder="Your Query" required></textarea>
+   <button type="submit">Submit</button>
+  </form>
+ </div>
+</div>
+
+<section class="section">
+ <h2>Course Highlights</h2>
+ <ul>
+  <li>CAD modeling with Autodesk, SolidWorks, CATIA</li>
+  <li>CAM programming for CNC and 3D printing</li>
+  <li>CAE simulations with AI-based optimization</li>
+  <li>**Generative design** using AI algorithms</li>
+  <li>**Industry 4.0** integration and digital twins</li>
+ </ul>
+</section>
+
+<section class="section">
+ <h2>AI in Product Engineering</h2>
+ <p class="info-box">🤖 Use AI for **topology optimization**, **design automation**, and **failure prediction** to build efficient products with minimal human intervention.</p>
+</section>
+
+<section class="section">
+ <h2>Career Roles</h2>
+ <p class="info-box">🏗️ Design Engineer, Simulation Engineer, CAM Programmer, Product Developer.</p>
+</section>
+
+<footer>© 2025 LittleIdeas — Learn Smarter with AI</footer>
+
+<div id="brochureModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4><span class="cloud-icon">☁</span> Download Brochure</h4> <span class="close-btn top-close-btn">&times;</span> 
+        </div>
+        <form id="brochureForm">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Mobile Number" required>
+            <input type="email" placeholder="Email" required>
+            
+            <div class="course-static">CAD / CAM / CAE with AI</div>
+            
+            <button type="submit" class="submit-btn">Submit & Download</button>
+            <button type="button" class="submitted-btn" style="display: none;">Submitted</button>
+            
+            <a href="path/to/your/cad_cam_cae_brochure.pdf" class="download-link" id="downloadLink" download style="display: none;">
+                Download **CAD / CAM / CAE** Brochure Now
+            </a>
+            
+            <div style="clear: both;"></div> 
+        </form>
+        <button class="close-btn close-bottom">Close</button>
+    </div>
+</div>
+<script>
+    // Get the modal elements
+    const modal = document.getElementById("brochureModal");
+    const openBtnTop = document.getElementById("openBrochureModalTop");
+    const closeBtns = document.querySelectorAll(".close-btn");
+    const form = document.getElementById("brochureForm");
+    const downloadLink = document.getElementById("downloadLink");
+    const submitButton = form.querySelector('.submit-btn');
+    const submittedButton = form.querySelector('.submitted-btn');
+
+    // Function to open the modal
+    const openModal = function() {
+        modal.style.display = "flex";
+        // Reset state when opening
+        submitButton.style.display = 'block';
+        submittedButton.style.display = 'none';
+        downloadLink.style.display = 'none';
+        form.reset(); // Clear any previous inputs
+    };
+
+    // Event listener for opening button
+    if (openBtnTop) {
+        openBtnTop.onclick = openModal;
+    }
+
+    // Function to close the modal (for X button and bottom button)
+    closeBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "none";
+        }
+    });
+
+    // Close the modal when the user clicks anywhere outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    form.onsubmit = function(event) {
+        event.preventDefault(); // Stop the default form submission
+
+        // 1. Hide the original submit button, show the 'Submitted' button
+        submitButton.style.display = 'none';
+        submittedButton.style.display = 'block';
+
+        // 2. Show the actual download link
+        downloadLink.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

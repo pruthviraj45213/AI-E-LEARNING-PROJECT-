@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Categories — LittleIdeas</title>
+  <meta name="description" content="Browse AI, tech and creative categories on LittleIdeas — AI-powered learning marketplace.">
+  <style>
+    /* ===== Theme Variables ===== */
+    :root{
+      --bg:#0b0d12;
+      --surface:#0f1220;
+      --muted:#9aa0b3;
+      --accent1:#7c57ff;
+      --accent2:#b58cff;
+      --glass: rgba(255,255,255,0.04);
+      --card:#0f1424;
+      --glow: 0 8px 30px rgba(124,87,255,0.14);
+      --radius:14px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter,system-ui,-apple-system,"Segoe UI",Roboto;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,87,255,0.06), transparent),
+                  linear-gradient(180deg,var(--bg) 0%, #06070a 100%);
+      color:#e8eefc;line-height:1.45;padding:28px;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    img{max-width:100%;border-radius:12px;display:block}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+
+    /* ===== Header ===== */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:12px;padding:12px 16px;margin-bottom:36px;
+      box-shadow:var(--glow);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:50px;height:50px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:20px;color:white;
+    }
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:8px;transition:.2s}
+    nav a:hover{color:white;background:rgba(124,87,255,0.08);transform:translateY(-2px)}
+
+    /* ===== Hero ===== */
+    .hero{
+      text-align:center;margin-bottom:40px;
+    }
+    .hero h1{
+      font-size:2rem;color:#fff;margin-bottom:8px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero p{color:var(--muted);font-size:15px;max-width:600px;margin:0 auto;}
+
+    /* ===== Categories Grid ===== */
+    .categories-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+    }
+    .cat-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:14px;
+      overflow:hidden;
+      transition:transform .25s, box-shadow .25s;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+    }
+    .cat-card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 25px 50px rgba(2,3,8,0.6);
+    }
+    .cat-thumb{height:160px;overflow:hidden}
+    .cat-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .cat-card:hover .cat-thumb img{transform:scale(1.06)}
+    .cat-body{padding:18px}
+    .cat-body h3{font-size:17px;font-weight:600;margin-bottom:8px;color:#fff}
+    .cat-body p{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:48px}
+    .cat-body button{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;border:0;border-radius:8px;padding:8px 14px;font-size:13px;
+      transition:transform .2s;
+    }
+    .cat-body button:hover{transform:translateY(-2px)}
+
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:50px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">LI</div>
+        <div>
+          <h1 style="font-size:18px">LittleIdeas</h1>
+          <p style="font-size:12px;color:var(--muted)">AI learning marketplace</p>
+        </div>
+      </div>
+      <nav>
+        <a href="AI platform.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="categories.html">Categories</a>
+        <a href="signup.html">Sign in</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Explore by Categories</h1>
+      <p>Discover learning paths tailored to your goals — from AI and ML to creative tools and coding skills.</p>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="categories-grid">
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Machine Learning</h3>
+          <p>Build predictive models and understand the math behind intelligent systems.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1682685795807-1bdc83a3bc22?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Generative AI</h3>
+          <p>Create art, text, and media using the latest generative AI models.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Prompt Engineering</h3>
+          <p>Master the art of prompting to get the best results from AI models like GPT.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1614028674026-a65e31bfd27c?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Data Science</h3>
+          <p>Analyze and visualize data to derive real-world insights and decisions.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b6f59?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>AI Product Management</h3>
+          <p>Bridge the gap between AI tech and business outcomes with smart strategies.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1626908013376-7f3e8dd46b03?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Deep Learning</h3>
+          <p>Dive into neural networks, computer vision, and natural language processing.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1666886577868-8f7311a93dc9?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Cloud & MLOps</h3>
+          <p>Deploy and scale machine learning models with MLOps and cloud tools.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-thumb">
+          <img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=600&q=80" alt="">
+        </div>
+        <div class="cat-body">
+          <h3>Web Development</h3>
+          <p>Learn to build responsive, modern web apps using HTML, CSS, JS, and frameworks.</p>
+          <button>Explore Courses</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2025 LittleIdeas — Learn by category, grow by curiosity.</footer>
+  </div>
+</body>
+</html>

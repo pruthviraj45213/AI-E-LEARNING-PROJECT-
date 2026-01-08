@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cloud Computing with AI — LittleIdeas</title>
+<style>
+:root {
+  --bg: #0b0d12;
+  --card: #101425;
+  --muted: #9aa0b3;
+  --accent1: #7c57ff;
+  --accent2: #b58cff;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins';
+  background: radial-gradient(800px at top left, rgba(124,87,255,0.15), transparent), var(--bg);
+  color: #e8eefc;
+  padding: 28px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.logo { font-size: 26px; font-weight: 700; color: var(--accent2); }
+nav a { margin: 0 10px; color: var(--muted); text-decoration: none; }
+nav a:hover { color: white; }
+
+.course-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 25px;
+}
+.course-hero img {
+  width: 400px;
+  border-radius: var(--radius);
+}
+.course-info {
+  flex: 1;
+  min-width: 280px;
+}
+.enquiry-form {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: var(--radius);
+  min-width: 280px;
+  max-width: 340px;
+}
+.enquiry-form h3 {
+  color: white;
+  margin-bottom: 15px;
+  text-align: center;
+}
+/* Reusing input styles for both forms/modal */
+.enquiry-form input, .enquiry-form textarea, .modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-family: 'Poppins';
+}
+.enquiry-form input::placeholder, .enquiry-form textarea::placeholder, .modal-content input::placeholder {
+  color: var(--muted);
+}
+/* Reusing button styles for both forms/modal */
+.enquiry-form button, .modal-content button {
+  width: 100%;
+  background: var(--accent1);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.enquiry-form button:hover, .modal-content button:hover {
+  background: var(--accent2);
+}
+
+h1, h2 { color: white; }
+ul { margin-left: 20px; color: var(--muted); }
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: var(--accent1);
+  color: white;
+  border-radius: 8px;
+  margin-top: 15px;
+  text-decoration: none; /* Added for anchor tags */
+  text-align: center;
+}
+.btn:hover { background: var(--accent2); }
+/* Specific styling for the new 'Download Brochure' button in course-info */
+.course-info .btn-secondary {
+    background: none;
+    border: 1px solid var(--accent1);
+    margin-left: 10px;
+}
+.course-info .btn-secondary:hover {
+    background: var(--accent1);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 40px;
+}
+.info-box {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* --- MODAL STYLES (New) --- */
+.modal {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: var(--card);
+    padding: 25px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: white;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+.modal-header h4 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--accent2);
+}
+.cloud-icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+.close-btn {
+    color: var(--muted);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover, .close-btn:focus {
+    color: white;
+    text-decoration: none;
+}
+.close-bottom {
+    background: none !important;
+    border: 1px solid var(--muted);
+    color: var(--muted) !important;
+    margin-top: 10px;
+}
+.close-bottom:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: white;
+    color: white !important;
+}
+
+/* Elements that appear after submission */
+#downloadLink {
+    display: block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    background: #4CAF50; /* Green color for success */
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.submitted-btn {
+    display: none; /* Hidden by default */
+    background: var(--muted) !important; 
+    cursor: default;
+}
+.course-static {
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LittleIdeas</div>
+  <nav>
+    <a href="../AI E-LEARNING PROJECT/AI platform.html">Home</a>
+    <a href="../courses.html">Courses</a>
+  </nav>
+</header>
+
+<div class="course-hero">
+  <img src="C:\Users\pruth\Downloads\cloude computing.jpg" alt="Cloud Computing with AI">
+  
+  <div class="course-info">
+    <h1>Cloud Computing with AI</h1>
+    <p>Master the power of the cloud while integrating artificial intelligence for scalable automation, data management, and smart deployment.</p>
+    <p><strong>Duration:</strong> 7 Months | <strong>Level:</strong> Intermediate | <strong>Certificate:</strong> Yes</p>
+    
+    <a href="#" class="btn">Enroll Now</a>
+    <button id="openBrochureModal" class="btn btn-secondary">Download Brochure</button>
+
+  </div>
+
+  <form class="enquiry-form">
+    <h3>Enquire Now</h3>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <textarea rows="3" placeholder="Your Query"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<section>
+  <h2>Course Modules</h2>
+  <ul>
+    <li>AWS, Azure, and Google Cloud fundamentals</li>
+    <li>Cloud infrastructure automation using AI tools</li>
+    <li>Serverless computing & edge AI</li>
+    <li>AI model deployment on the cloud</li>
+    <li>Monitoring, optimization, and scalability</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Career Benefits</h2>
+  <p>Learn how cloud meets AI — enabling predictive resource management, self-healing systems, and secure automated networks.</p>
+  <div class="info-box">
+    <p>☁️ <strong>Career Roles:</strong> Cloud Engineer, AI Cloud Architect, DevOps Specialist</p>
+  </div>
+</section>
+
+<footer>© 2025 LittleIdeas — Learn Smarter with AI</footer>
+
+<div id="brochureModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4><span class="cloud-icon">☁</span> Download Brochure</h4>
+            <span class="close-btn top-close-btn">&times;</span> 
+        </div>
+        <form id="brochureForm">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Mobile Number" required>
+            <input type="email" placeholder="Email" required>
+            
+            <div class="course-static">Cloud Computing with AI</div>
+            
+            <button type="submit" class="submit-btn">Submit & Download</button>
+            <button type="button" class="submitted-btn">Submitted</button>
+            
+            <a href="path/to/your/cloud_computing_brochure.pdf" class="download-link" id="downloadLink" download style="display: none;">
+                Download **Cloud Computing** Course Now
+            </a>
+            
+            <div style="clear: both;"></div> 
+        </form>
+        <button class="close-btn close-bottom">Close</button>
+    </div>
+</div>
+<script>
+    // Get the modal elements
+    const modal = document.getElementById("brochureModal");
+    const openBtn = document.getElementById("openBrochureModal");
+    const closeBtns = document.querySelectorAll(".close-btn"); // Get all close buttons
+    const form = document.getElementById("brochureForm");
+    const downloadLink = document.getElementById("downloadLink");
+    const submitButton = form.querySelector('.submit-btn');
+    const submittedButton = form.querySelector('.submitted-btn');
+
+    // Initial state: Hide the modal
+    modal.style.display = "none";
+
+    // Function to open the modal
+    openBtn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // Function to close the modal (for X button and bottom button)
+    closeBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "none";
+        }
+    });
+
+    // Close the modal when the user clicks anywhere outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    form.onsubmit = function(event) {
+        event.preventDefault(); // Stop the default form submission
+
+        // In a real application, you would send the form data to a server here.
+        console.log("Brochure Form submitted. Capturing lead information...");
+
+        // 1. Hide the original submit button, show the 'Submitted' button
+        submitButton.style.display = 'none';
+        submittedButton.style.display = 'block';
+
+        // 2. Show the actual download link
+        downloadLink.style.display = 'block';
+        
+        // You could optionally trigger the download instantly here:
+        // window.location.href = downloadLink.href;
+    }
+</script>
+
+</body>
+</html>

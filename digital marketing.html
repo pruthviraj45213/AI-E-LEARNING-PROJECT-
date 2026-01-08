@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Marketing with AI — LittleIdeas</title>
+<style>
+:root {
+ --bg:#0b0d12;
+ --card:#101425;
+ --muted:#9aa0b3;
+ --accent1:#7c57ff;
+ --accent2:#b58cff;
+ --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:'Poppins',system-ui;
+ background:radial-gradient(800px at top left,rgba(124,87,255,0.12),transparent),var(--bg);
+ color:#e8eefc;
+ padding:28px;
+}
+a{text-decoration:none;color:inherit}
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:30px;
+}
+.logo{font-size:26px;font-weight:700;color:var(--accent2);}
+nav a{margin:0 10px;color:var(--muted);}
+nav a:hover{color:white;}
+
+.hero{
+ display:flex;
+ flex-wrap:wrap;
+ gap:28px;
+ background:var(--card);
+ padding:24px;
+ border-radius:var(--radius);
+ box-shadow:0 6px 24px rgba(124,87,255,0.12);
+}
+.hero img{
+ width:400px;
+ border-radius:var(--radius);
+ object-fit:cover;
+}
+.info{
+ flex:1;
+ min-width:280px;
+}
+.info h1{color:white;margin-bottom:10px;font-size:26px;}
+.info p{color:var(--muted);margin-bottom:12px;}
+.section{margin-top:26px;}
+h2{color:white;margin-bottom:12px;}
+ul{margin-left:20px;color:var(--muted);margin-bottom:12px;}
+.info-box{
+ background:rgba(255,255,255,0.04);
+ padding:14px;
+ border-radius:12px;
+ margin-top:12px;
+ color:var(--muted);
+}
+.btn{
+ display:inline-block;
+ padding:12px 18px;
+ background:var(--accent1);
+ color:#fff;
+ border-radius:8px;
+ margin-top:12px;
+ text-align: center; /* Ensures button text is centered */
+}
+.btn:hover{background:var(--accent2);}
+
+/* Added styling for the new brochure button */
+.info .btn-secondary {
+    background: none;
+    border: 1px solid var(--accent1);
+    margin-left: 10px;
+    font-size: 14px;
+    padding: 11px 16px;
+}
+.info .btn-secondary:hover {
+    background: var(--accent1);
+}
+
+footer{
+ text-align:center;
+ color:var(--muted);
+ margin-top:40px;
+ font-size:13px;
+}
+
+/* Enquiry Form Styling */
+.enquiry-form{
+ background:rgba(255,255,255,0.05);
+ padding:20px;
+ border-radius:var(--radius);
+ min-width:280px;
+ max-width:340px;
+ flex:1;
+}
+.enquiry-form h3{
+ color:white;
+ margin-bottom:15px;
+ text-align:center;
+}
+/* Unified input/textarea styling */
+.enquiry-form input,
+.enquiry-form textarea,
+.modal-content input {
+ width:100%;
+ padding:10px;
+ margin:8px 0;
+ border:none;
+ border-radius:8px;
+ background:rgba(255,255,255,0.1);
+ color:white;
+ font-family:'Poppins',system-ui;
+}
+.enquiry-form input::placeholder,
+.enquiry-form textarea::placeholder,
+.modal-content input::placeholder {
+ color:var(--muted);
+}
+/* Unified button styling */
+.enquiry-form button,
+.modal-content button.submit-btn,
+.modal-content button.submitted-btn,
+.modal-content button.close-bottom {
+ width:100%;
+ background:var(--accent1);
+ color:white;
+ border:none;
+ padding:12px;
+ border-radius:8px;
+ cursor:pointer;
+ font-weight:600;
+ margin-top: 10px;
+}
+.enquiry-form button:hover,
+.modal-content button.submit-btn:hover {
+ background:var(--accent2);
+}
+
+/* --- MODAL STYLES (New) --- */
+.modal {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    display: flex; /* Use flex for centering */
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: var(--card);
+    padding: 25px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: white;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+.modal-header h4 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--accent2);
+}
+.cloud-icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+.close-btn {
+    color: var(--muted);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-btn:hover, .close-btn:focus {
+    color: white;
+    text-decoration: none;
+}
+.close-bottom {
+    background: none !important;
+    border: 1px solid var(--muted);
+    color: var(--muted) !important;
+}
+.close-bottom:hover {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: white;
+    color: white !important;
+}
+
+/* Elements that appear after submission */
+#downloadLink {
+    display: block;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    background: #4CAF50; /* Green color for success */
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.submitted-btn {
+    display: none; /* Hidden by default */
+    background: var(--muted) !important; 
+    cursor: default;
+}
+.course-static {
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">LittleIdeas</div>
+ <nav><a href="../AI E-LEARNING PROJECT/AI platform.html">Home</a><a href="../courses.html">Courses</a></nav>
+</header>
+
+<div class="hero">
+ <img src="https://www.webskittersacademy.in/wp-content/uploads/2025/06/Digital-Marketing-Course-with-AI-The-Course-to-Keep-You-Ahead.jpg" alt="Digital Marketing with AI">
+
+ <div class="info">
+  <h1>Digital Marketing with AI</h1>
+  <p>Combine traditional digital-marketing methods with AI to build highly targeted campaigns, analyze customer behavior, and automate optimization for maximum ROI.</p>
+  <p><strong>Duration:</strong> 4 Months | <strong>Level:</strong> Beginner → Intermediate | <strong>Certificate:</strong> Yes</p>
+    <a href="#" class="btn">Enroll Now</a>
+    <button id="openBrochureModal" class="btn btn-secondary">Download Brochure</button>
+ </div>
+
+  <form class="enquiry-form">
+  <h3>Enquire Now</h3>
+  <input type="text" placeholder="Full Name" required>
+  <input type="email" placeholder="Email Address" required>
+  <input type="tel" placeholder="Phone Number" required>
+  <textarea rows="3" placeholder="Your Query"></textarea>
+  <button type="submit">Submit</button>
+ </form>
+</div>
+
+<section class="section">
+ <h2>What You’ll Learn</h2>
+ <ul>
+  <li>**AI-driven audience segmentation** and personalization</li>
+  <li>Paid media strategy (Google Ads, Meta) with **automated bidding**</li>
+  <li>SEO & content strategy using **AI keyword tools**</li>
+  <li>Marketing analytics, attribution modeling, and A/B testing</li>
+  <li>Marketing automation, email orchestration, and **chatbots**</li>
+ </ul>
+</section>
+
+<section class="section">
+ <h2>Course Modules</h2>
+ <ul>
+  <li>Intro to Digital Marketing & AI fundamentals</li>
+  <li>Content creation: AI-assisted copy & creative workflows</li>
+  <li>Performance marketing & automated optimization</li>
+  <li>Analytics & dashboarding (GA, Looker, Power BI)</li>
+  <li>Capstone: Run an end-to-end campaign using AI tools</li>
+ </ul>
+ <div class="info-box">
+  <p>💼 **Career Roles:** Digital Marketing Strategist, AI Marketing Analyst, Campaign Automation Specialist</p>
+ </div>
+</section>
+
+<footer>© 2025 LittleIdeas — Learn Smarter with AI</footer>
+
+<div id="brochureModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4><span class="cloud-icon">☁</span> Download Brochure</h4> <span class="close-btn top-close-btn">&times;</span> 
+        </div>
+        <form id="brochureForm">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Mobile Number" required>
+            <input type="email" placeholder="Email" required>
+            
+            <div class="course-static">Digital Marketing with AI</div>
+            
+            <button type="submit" class="submit-btn">Submit & Download</button>
+            <button type="button" class="submitted-btn">Submitted</button>
+            
+            <a href="path/to/your/digital_marketing_brochure.pdf" class="download-link" id="downloadLink" download style="display: none;">
+                Download **Digital Marketing** Course Now
+            </a>
+            
+            <div style="clear: both;"></div> 
+        </form>
+        <button class="close-btn close-bottom">Close</button>
+    </div>
+</div>
+<script>
+    // Get the modal elements
+    const modal = document.getElementById("brochureModal");
+    const openBtn = document.getElementById("openBrochureModal");
+    const closeBtns = document.querySelectorAll(".close-btn"); // Get all close buttons
+    const form = document.getElementById("brochureForm");
+    const downloadLink = document.getElementById("downloadLink");
+    const submitButton = form.querySelector('.submit-btn');
+    const submittedButton = form.querySelector('.submitted-btn');
+
+    // Function to open the modal
+    openBtn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // Function to close the modal (for X button and bottom button)
+    closeBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "none";
+        }
+    });
+
+    // Close the modal when the user clicks anywhere outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    form.onsubmit = function(event) {
+        event.preventDefault(); // Stop the default form submission
+
+        // In a real application, you would send the form data to a server here.
+        console.log("Brochure Form submitted. Capturing lead information...");
+
+        // 1. Hide the original submit button, show the 'Submitted' button
+        submitButton.style.display = 'none';
+        submittedButton.style.display = 'block';
+
+        // 2. Show the actual download link
+        downloadLink.style.display = 'block';
+        
+        // Optional: clear form inputs after submission (good practice)
+        form.reset();
+    }
+</script>
+
+</body>
+</html>

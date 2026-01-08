@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Explore Courses — LittleIdeas</title>
+  <meta name="description" content="Explore top AI, ML, and tech courses on LittleIdeas — your AI-powered learning marketplace.">
+  <style>
+    /* ===== Theme Variables ===== */
+    :root{
+      --bg:#0b0d12;
+      --surface:#0f1220;
+      --muted:#9aa0b3;
+      --accent1:#7c57ff;
+      --accent2:#b58cff;
+      --glass: rgba(255,255,255,0.04);
+      --card:#0f1424;
+      --glow: 0 8px 30px rgba(124,87,255,0.14);
+      --radius:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter,system-ui,-apple-system,"Segoe UI",Roboto;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,87,255,0.06), transparent),
+                  linear-gradient(180deg,var(--bg) 0%, #06070a 100%);
+      color:#e8eefc;line-height:1.45;padding:28px;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    img{max-width:100%;border-radius:10px;display:block}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+
+    /* ===== Header ===== */
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:12px;padding:12px 16px;margin-bottom:24px;
+      box-shadow:var(--glow);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:50px;height:50px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:20px;color:white;
+    }
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:8px;transition:.2s}
+    nav a:hover{color:white;background:rgba(124,87,255,0.08);transform:translateY(-2px)}
+
+    /* ===== Filters ===== */
+    .filters{
+      display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow:var(--glow);
+    }
+    .filters select, .filters input{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
+      border-radius:10px;
+      padding:8px 12px;
+      font-size:14px;
+      outline:none;
+    }
+    .filters button{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;border:0;border-radius:10px;padding:8px 16px;
+      box-shadow:0 8px 30px rgba(124,87,255,0.22);
+      transition:.2s;
+    }
+    .filters button:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(124,87,255,0.3)}
+
+    /* ===== Course Grid ===== */
+    .explore-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+    .course-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:14px;
+      overflow:hidden;
+      transition:transform .25s, box-shadow .25s;
+    }
+    .course-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 30px 60px rgba(2,3,8,0.7);
+    }
+    .thumb{height:160px;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .course-card:hover .thumb img{transform:scale(1.06)}
+    .course-info{padding:14px}
+    .course-info h3{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+    .course-info p{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .course-foot{
+      display:flex;align-items:center;justify-content:space-between;padding:0 14px 14px;
+    }
+    .course-foot .price{color:var(--accent2);font-weight:700}
+    .btn-buy{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;border:0;border-radius:8px;padding:6px 12px;font-size:13px;
+      transition:transform .2s;
+    }
+    .btn-buy:hover{transform:translateY(-2px)}
+
+    /* ===== Sticky Sidebar ===== */
+    .explore-layout{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:20px;
+    }
+    .sidebar{
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:14px;padding:18px;position:sticky;top:28px;height:max-content;
+    }
+    .sidebar h4{margin-bottom:10px;font-size:15px;color:#fff}
+    .sidebar ul{list-style:none;color:var(--muted);font-size:14px}
+    .sidebar li{padding:6px 0;cursor:pointer;transition:.2s}
+    .sidebar li:hover{color:white;transform:translateX(4px)}
+
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:40px}
+
+    @media (max-width:980px){
+      .explore-layout{grid-template-columns:1fr}
+      .sidebar{position:relative;top:0;width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">LI</div>
+        <div>
+          <h1 style="font-size:18px">LittleIdeas</h1>
+          <p style="font-size:12px;color:var(--muted)">AI learning marketplace</p>
+        </div>
+      </div>
+      <nav>
+        <a href="AI platform.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="categories.html">Categories</a>
+        <a href="signup.html">Sign in</a>
+      </nav>
+    </header>
+
+    <!-- Filters -->
+    <div class="filters">
+      <input type="text" placeholder="Search course..." />
+      <select>
+        <option>All Categories</option>
+        <option>Machine Learning</option>
+        <option>Generative AI</option>
+        <option>MLOps</option>
+        <option>Data Analytics</option>
+      </select>
+      <select>
+        <option>Duration</option>
+        <option>Short (1–3 hrs)</option>
+        <option>Medium (3–6 hrs)</option>
+        <option>Long (6+ hrs)</option>
+      </select>
+      <select>
+        <option>Sort by</option>
+        <option>Popularity</option>
+        <option>Newest</option>
+        <option>Price: Low → High</option>
+        <option>Price: High → Low</option>
+      </select>
+      <button>Apply Filters</button>
+    </div>
+
+    <!-- Explore Layout -->
+    <div class="explore-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h4>Top Categories</h4>
+        <ul>
+          <li>Machine Learning</li>
+          <li>Generative AI</li>
+          <li>Prompt Engineering</li>
+          <li>Data Science</li>
+          <li>AI Product Management</li>
+          <li>Deep Learning</li>
+        </ul>
+
+        <h4 style="margin-top:20px;">Price Range</h4>
+        <ul>
+          <li>Under ₹499</li>
+          <li>₹500 – ₹999</li>
+          <li>Above ₹1000</li>
+        </ul>
+      </aside>
+
+      <!-- Course Grid -->
+      <section class="explore-grid" aria-label="Explore Courses">
+        <div class="course-card">
+          <div class="thumb">
+            <img src="https://media.istockphoto.com/id/1360520509/photo/businessman-using-a-computer-to-webinar-online-education-on-internet-online-courses-e.jpg?s=170667a&w=is&k=20&c=ow3JW_fmvp6RWoXcESz5vgI7QuJvDqqrMFsZvkNIPVE=" alt="">
+          </div>
+          <div class="course-info">
+            <h3>AI Product Management</h3>
+            <p>Launch and manage AI products efficiently.</p>
+          </div>
+          <div class="course-foot">
+            <span class="price">₹499</span>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="thumb">
+            <img src="https://static.vecteezy.com/system/resources/previews/041/150/844/non_2x/ai-generated-studying-in-college-academic-year-concept-pretty-caucasian-female-student-holding-papers-abstracts-outdoors-portrait-young-smiling-curly-woman-at-university-campus-free-photo.jpg" alt="">
+          </div>
+          <div class="course-info">
+            <h3>Hands-on Generative AI</h3>
+            <p>Create images & text with AI models — guided labs.</p>
+          </div>
+          <div class="course-foot">
+            <span class="price">₹799</span>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="thumb">
+            <img src="https://discover.rbcroyalbank.com/wp-content/uploads/Untitled-design-2023-08-17T165044.518.jpg" alt="">
+          </div>
+          <div class="course-info">
+            <h3>Data Engineering for ML</h3>
+            <p>Learn pipelines & data ops for scalable models.</p>
+          </div>
+          <div class="course-foot">
+            <span class="price">₹699</span>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="thumb">
+            <img src="https://media.istockphoto.com/id/1387225403/photo/portrait-of-young-man-using-laptop-while-attending-online-course-at-home.jpg?s=612x612&w=0&k=20&c=QFg0ZK-oe7yZ1or8V8v-1vZtILsytNraTnOsvvOfyq8=" alt="">
+          </div>
+          <div class="course-info">
+            <h3>Prompt Engineering Mastery</h3>
+            <p>Design powerful prompts for LLMs like GPT & Claude.</p>
+          </div>
+          <div class="course-foot">
+            <span class="price">₹599</span>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>© 2025 LittleIdeas — Explore & Learn Smarter</footer>
+  </div>
+</body>
+</html>
